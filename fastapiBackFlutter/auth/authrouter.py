@@ -33,6 +33,7 @@ def login(
     db.commit()
 
     response = {
+        "id": user.id,
         "name": user.nama,
         "email": user.email,
         "jwtToken": access_token,

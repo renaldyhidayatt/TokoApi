@@ -13,7 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final AuthService _auth = AuthService();
 
-  // bool _Loading = false;
+  bool _Loading = false;
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           setState(() {
-                            // _Loading = true;
+                            _Loading = true;
                           });
                           _auth
                               .login(Login(

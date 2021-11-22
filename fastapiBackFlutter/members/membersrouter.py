@@ -17,6 +17,11 @@ def getAll(current_user: Member = Depends(get_currentUser)):
     return MemberServices.get_all()
 
 
+@router.get("/{id}")
+def getId(id: int):
+    return MemberServices.get_userid(id=id)
+
+
 @router.put("/{id}")
 def updateMember(
     id: int, request: RegisterMember, current_user: Member = Depends(get_currentUser)

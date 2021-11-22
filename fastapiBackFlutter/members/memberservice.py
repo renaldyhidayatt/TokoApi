@@ -30,6 +30,12 @@ class MemberServices:
         db.refresh(new_user)
         return new_user
 
+    def get_userid(id: int):
+        db = Session(engine)
+        db_id = db.query(Member).filter(Member.id == id).first()
+
+        return db_id
+
     def update_user(id: int, request: RegisterMember):
         db = Session(engine)
         db_id = db.query(Member).filter(Member.id == id).first()

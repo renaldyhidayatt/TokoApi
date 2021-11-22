@@ -9,15 +9,15 @@ router = APIRouter(prefix="/products", tags=["Product"])
 
 @router.get("/")
 def getAll():
-    return ProductService.getAll()
+    return ProductService.getall()
 
 
-@router.post("/")
+@router.post("/create")
 def createProduct(request: ProductSchema):
     return ProductService.createProduct(request=request)
 
 
-@router.put("/{id}")
+@router.put("/update/{id}")
 def updateProduct(id: int, request: ProductSchema):
     return ProductService.updateProduct(id=id, request=request)
 

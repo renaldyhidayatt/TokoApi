@@ -1,3 +1,5 @@
+import 'package:coba_aja/models/register.dart';
+import 'package:coba_aja/service/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -8,6 +10,8 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   bool _iLoading = false;
+
+  final AuthService authService = AuthService();
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -77,6 +81,27 @@ class _RegisterPageState extends State<RegisterPage> {
                       return null;
                     },
                   ),
+                  ElevatedButton(
+                    child: Text("Register"),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        setState(() {
+                          _iLoading = true;
+                        });
+                        authService.register(Register(
+                            nama: _namaController.text,
+                            email: _emailController.text,
+                            password: _passwordController.text));
+
+                        Future.delayed(Duration(seconds: 3), () {
+                          setState(() {
+                            _iLoading = false;
+                          });
+                          Navigator.pop(context);
+                        });
+                      }
+                    },
+                  )
                 ],
               ),
             ),
